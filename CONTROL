@@ -1,5 +1,5 @@
 local CorrectKey = "CONTROL"
-local AdLink = "https://discord.gg/EFe7J6ud"
+local AdLink = "https://discord.gg/9fYFSwMQcH"
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
