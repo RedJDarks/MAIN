@@ -1,0 +1,137 @@
+local JDarkHub = {}
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local toggleButton = Instance.new("ImageButton")
+toggleButton.Size = UDim2.new(0, 40, 0, 40)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.BackgroundTransparency = 1
+toggleButton.Image = "rbxassetid://YOUR_IMAGE_ID"  -- Replace with your image ID
+toggleButton.Parent = playerGui
+
+local corner = Instance.new("UICorner", toggleButton)
+corner.CornerRadius = UDim.new(0, 10)
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 500, 0, 300)
+mainFrame.Position = UDim2.new(0.5, -250, 0.5, -150)
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainFrame.BackgroundTransparency = 0.5
+mainFrame.Visible = false
+mainFrame.Parent = playerGui
+
+local mainCorner = Instance.new("UICorner", mainFrame)
+mainCorner.CornerRadius = UDim.new(0, 10)
+
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 30)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "JDark Hub by: shinzouph"
+titleLabel.TextSize = 16
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.Parent = mainFrame
+
+local featureScroll = Instance.new("ScrollingFrame")
+featureScroll.Size = UDim2.new(0, 150, 1, -30)
+featureScroll.Position = UDim2.new(0, 0, 0, 30)
+featureScroll.CanvasSize = UDim2.new(0, 0, 5, 0)
+featureScroll.BackgroundTransparency = 1
+featureScroll.Parent = mainFrame
+
+function JDarkHub.CreateTab(name, imageID)
+    local tabButton = Instance.new("TextButton")
+    tabButton.Size = UDim2.new(1, 0, 0, 30)
+    tabButton.Text = name
+    tabButton.BackgroundTransparency = 0.3
+    tabButton.Parent = featureScroll
+    
+    local tabFrame = Instance.new("Frame")
+    tabFrame.Size = UDim2.new(1, -150, 1, -30)
+    tabFrame.Position = UDim2.new(0, 150, 0, 30)
+    tabFrame.BackgroundTransparency = 1
+    tabFrame.Parent = mainFrame
+    tabFrame.Visible = false
+    
+    tabButton.MouseButton1Click:Connect(function()
+        for _, child in pairs(mainFrame:GetChildren()) do
+            if child:IsA("Frame") and child ~= featureScroll then
+                child.Visible = false
+            end
+        end
+        tabFrame.Visible = true
+    end)
+    
+    return tabFrame
+end
+
+function JDarkHub.AddTextLabel(tab, text)
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -10, 0, 30)
+    label.Position = UDim2.new(0, 5, 0, #tab:GetChildren() * 35)
+    label.Text = text
+    label.Parent = tab
+end
+
+function JDarkHub.AddButton(tab, text, callback)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(1, -10, 0, 30)
+    button.Position = UDim2.new(0, 5, 0, #tab:GetChildren() * 35)
+    button.Text = text
+    button.Parent = tab
+    button.MouseButton1Click:Connect(callback)
+end
+
+function JDarkHub.AddToggle(tab, text, callback)
+    local toggle = Instance.new("TextButton")
+    toggle.Size = UDim2.new(1, -10, 0, 30)
+    toggle.Position = UDim2.new(0, 5, 0, #tab:GetChildren() * 35)
+    toggle.Text = text .. " [OFF]"
+    toggle.Parent = tab
+    
+    local isOn = false
+    toggle.MouseButton1Click:Connect(function()
+        isOn = not isOn
+        toggle.Text = text .. (isOn and " [ON]" or " [OFF]")
+        callback(isOn)
+    end)
+end
+
+function JDarkHub.AddDropdown(tab, text, options, callback)
+    local dropdown = Instance.new("TextButton")
+    dropdown.Size = UDim2.new(1, -10, 0, 30)
+    dropdown.Position = UDim2.new(0, 5, 0, #tab:GetChildren() * 35)
+    dropdown.Text = text .. " ▼"
+    dropdown.Parent = tab
+    
+    local isOpen = false
+    dropdown.MouseButton1Click:Connect(function()
+        isOpen = not isOpen
+        dropdown.Text = text .. (isOpen and " ▲" or " ▼")
+    end)
+end
+
+function JDarkHub.AddTextBox(tab, placeholder, callback)
+    local textBox = Instance.new("TextBox")
+    textBox.Size = UDim2.new(1, -10, 0, 30)
+    textBox.Position = UDim2.new(0, 5, 0, #tab:GetChildren() * 35)
+    textBox.PlaceholderText = placeholder
+    textBox.Parent = tab
+    textBox.FocusLost:Connect(function()
+        callback(textBox.Text)
+    end)
+end
+
+local uiVisible = false
+toggleButton.MouseButton1Click:Connect(function()
+    uiVisible = not uiVisible
+    mainFrame.Visible = uiVisible
+end)
+
+return JDarkHub
