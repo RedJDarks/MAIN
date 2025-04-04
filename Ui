@@ -23,7 +23,7 @@ Deity/dp4pv/x64x70 | Certain Scripting and Testing ig
 
 ]]
 
-local Release = "Prerelease Beta 6.1"
+local Release = "Shinzou Hub"
 
 local Luna = { Folder = "Luna", Options = {}, ThemeGradient = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 164, 206)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(123, 201, 201)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(224, 138, 175))} }
 
@@ -49,9 +49,12 @@ local IconModule = {
 	Lucide = nil,
 	Material = {
 		["perm_media"] = "http://www.roblox.com/asset/?id=6031215982";
-		["Blue_lock"] = "http://www.roblox.com/asset/?id=111694300593784";
-	    ["Basket_ball"] = "http://www.roblox.com/asset/?id=123072746933607";
+		["shinzou_hub"] = "http://www.roblox.com/asset/?id=76954025391541";		
+	["repo"] = "http://www.roblox.com/asset/?id=132283509008280";
 		["sticky_note_2"] = "http://www.roblox.com/asset/?id=6031265972";
+		["dungeon_leveling"] = "http://www.roblox.com/asset/?id=105308650874672";
+		["blue_lock"] = "http://www.roblox.com/asset/?id=134150225695830";
+		["basketball_rivals"] = "http://www.roblox.com/asset/?id=99800178114293";
 		["gavel"] = "http://www.roblox.com/asset/?id=6023565902";
 		["table_view"] = "http://www.roblox.com/asset/?id=6031233835";
 		["home"] = "http://www.roblox.com/asset/?id=6026568195";
