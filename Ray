@@ -1163,11 +1163,25 @@ local function Hide(notify: boolean?)
 	if MPrompt then
 		MPrompt.Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 		MPrompt.Position = UDim2.new(0.5, 0, 0, -50)
+		MPrompt.Title.Text = "SHINZOU AUTO"
 		MPrompt.Size = UDim2.new(0, 40, 0, 10)
 		MPrompt.BackgroundTransparency = 1
 		MPrompt.Title.TextTransparency = 1
 		MPrompt.Visible = true
+
+		local oldgra = MPrompt:FindFirstChildOfClass("UIGradient")
+		if oldgra then
+			oldgra:Destroy()
+		end
+
+		local gradient = Instance.new("UIGradient")
+		gradient.Color = ColorSequence.new{
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(139, 0, 0)), -- Dark Red
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))  -- Bright Red
+		}
+		gradient.Parent = MPrompt
 	end
+end
 
 	task.spawn(closeSearch)
 
@@ -1606,7 +1620,7 @@ function ShinzouAutoLibrary:CreateWindow(Settings)
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "Interface Suite"
 
 	if Settings.LoadingTitle ~= "ShinzouAuto Interface Suite" then
-		LoadingFrame.Version.Text = "ShinzouAuto UI"
+		LoadingFrame.Version.Text = "Rayfield UI"
 	end
 
 	if Settings.Icon and Settings.Icon ~= 0 and Topbar:FindFirstChild('Icon') then
