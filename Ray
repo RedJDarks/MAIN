@@ -1176,7 +1176,6 @@ local function Hide(notify: boolean?)
 		MPrompt.Title.TextTransparency = 1
 		MPrompt.Visible = true
 	end
-end
 
 	task.spawn(closeSearch)
 
@@ -1643,8 +1642,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while true do
 				task.wait(math.random(18000, 600000))
 				RayfieldLibrary:Notify({
-					Title = "Rayfield Interface",
-					Content = "Enjoying this UI library? Find it at sirius.menu/discord",
+					Title = "Shinzou Auto",
+					Content = "Enjoying My Script? Find it at discord.gg/7mAXdJ3pnr",
 					Duration = 7,
 					Image = 4370033185,
 				})
